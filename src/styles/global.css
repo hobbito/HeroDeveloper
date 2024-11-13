@@ -3,3 +3,7 @@
 @tailwind utilities;
 
 /* Add any custom styles here */ 
+.custom-gradient {
+    background: linear-gradient(to bottom right, #0f172a, #1e3a8a);
+  }
+  
