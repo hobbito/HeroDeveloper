@@ -1,16 +1,59 @@
 ---
-
+import MainLayout from '../layouts/MainLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Professional Programming Services">
+  <section class="hero bg-slate-800 text-white py-20">
+    <div class="container mx-auto px-4">
+      <h1 class="text-5xl font-bold mb-6">Transform Your Ideas Into Reality</h1>
+      <p class="text-xl mb-8">Professional software development services for businesses and startups</p>
+      <a href="/contact" class="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg text-white font-semibold inline-block">
+        Get Started
+      </a>
+    </div>
+  </section>
+
+  <section class="services py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-12 text-center">Our Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="service-card p-6 border rounded-lg shadow-lg">
+          <h3 class="text-xl font-bold mb-4">Web Development</h3>
+          <p>Custom websites and web applications built with modern technologies</p>
+        </div>
+        <div class="service-card p-6 border rounded-lg shadow-lg">
+          <h3 class="text-xl font-bold mb-4">Mobile Apps</h3>
+          <p>Native and cross-platform mobile applications for iOS and Android</p>
+        </div>
+        <div class="service-card p-6 border rounded-lg shadow-lg">
+          <h3 class="text-xl font-bold mb-4">API Development</h3>
+          <p>Robust and scalable API solutions for your business needs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-us bg-slate-50 py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-12 text-center">Why Choose Us</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+          <h3 class="text-xl font-bold mb-4">Expertise</h3>
+          <p>Years of experience in delivering high-quality solutions</p>
+        </div>
+        <div class="text-center">
+          <h3 class="text-xl font-bold mb-4">Innovation</h3>
+          <p>Using cutting-edge technologies and best practices</p>
+        </div>
+        <div class="text-center">
+          <h3 class="text-xl font-bold mb-4">Support</h3>
+          <p>24/7 support and maintenance for your projects</p>
+        </div>
+        <div class="text-center">
+          <h3 class="text-xl font-bold mb-4">Quality</h3>
+          <p>Rigorous testing and quality assurance processes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

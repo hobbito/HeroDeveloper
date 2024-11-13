@@ -1,0 +1,66 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const services = [
+  {
+    id: 'web',
+    title: 'Web Development',
+    description: 'Custom web applications built with modern frameworks and technologies.',
+    features: [
+      'Responsive Design',
+      'Progressive Web Apps',
+      'E-commerce Solutions',
+      'Content Management Systems'
+    ]
+  },
+  {
+    id: 'mobile',
+    title: 'Mobile Development',
+    description: 'Native and cross-platform mobile applications for iOS and Android.',
+    features: [
+      'iOS Development',
+      'Android Development',
+      'Cross-platform Solutions',
+      'App Store Optimization'
+    ]
+  },
+  {
+    id: 'api',
+    title: 'API Development',
+    description: 'Scalable and secure API solutions for your business needs.',
+    features: [
+      'RESTful APIs',
+      'GraphQL',
+      'API Integration',
+      'Documentation'
+    ]
+  }
+];
+---
+
+<MainLayout title="Our Services">
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-12 text-center">Our Services</h1>
+      
+      <div class="space-y-20">
+        {services.map(service => (
+          <div id={service.id} class="service-section">
+            <h2 class="text-3xl font-bold mb-6">{service.title}</h2>
+            <p class="text-xl mb-8">{service.description}</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="bg-slate-50 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-4">Key Features</h3>
+                <ul class="list-disc list-inside space-y-2">
+                  {service.features.map(feature => (
+                    <li>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout> 

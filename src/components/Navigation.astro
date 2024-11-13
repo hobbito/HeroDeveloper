@@ -1,0 +1,24 @@
+---
+const navItems = [
+  { path: '/', label: 'Home' },
+  { path: '/services', label: 'Services' },
+  { path: '/portfolio', label: 'Portfolio' },
+  { path: '/about', label: 'About' },
+  { path: '/contact', label: 'Contact' },
+];
+---
+
+<nav class="container mx-auto px-4 py-6">
+  <div class="flex flex-col md:flex-row justify-between items-center">
+    <a href="/" class="text-2xl font-bold">HeroDeveloper</a>
+    <ul class="flex gap-6 mt-4 md:mt-0">
+      {navItems.map(item => (
+        <li>
+          <a href={item.path} class="hover:text-blue-400 transition-colors">
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav> 
