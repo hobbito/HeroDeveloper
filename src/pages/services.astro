@@ -3,57 +3,90 @@ import MainLayout from '../layouts/MainLayout.astro';
 
 const services = [
   {
-    id: 'web',
-    title: 'Web Development',
-    description: 'Custom web applications built with modern frameworks and technologies.',
+    title: "Custom Software Development",
+    description: "End-to-end custom software solutions tailored to your specific business needs. We handle everything from requirements analysis to deployment and maintenance.",
+    icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
     features: [
-      'Responsive Design',
-      'Progressive Web Apps',
-      'E-commerce Solutions',
-      'Content Management Systems'
+      "Requirements Analysis",
+      "Custom Architecture Design",
+      "Agile Development",
+      "Quality Assurance",
+      "Deployment & Maintenance"
     ]
   },
   {
-    id: 'mobile',
-    title: 'Mobile Development',
-    description: 'Native and cross-platform mobile applications for iOS and Android.',
+    title: "Mobile App Development",
+    description: "Native and cross-platform mobile applications that deliver exceptional user experiences across iOS and Android platforms.",
+    icon: "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z",
     features: [
-      'iOS Development',
-      'Android Development',
-      'Cross-platform Solutions',
-      'App Store Optimization'
+      "iOS Development",
+      "Android Development",
+      "Cross-Platform Solutions",
+      "UI/UX Design",
+      "App Store Optimization"
     ]
   },
   {
-    id: 'api',
-    title: 'API Development',
-    description: 'Scalable and secure API solutions for your business needs.',
+    title: "Web Development",
+    description: "Modern, responsive web applications built with cutting-edge technologies that scale with your business needs.",
+    icon: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9",
     features: [
-      'RESTful APIs',
-      'GraphQL',
-      'API Integration',
-      'Documentation'
+      "Frontend Development",
+      "Backend Development",
+      "API Integration",
+      "Database Design",
+      "Cloud Deployment"
     ]
   }
 ];
 ---
 
 <MainLayout title="Our Services">
-  <section class="py-20">
+  <!-- Hero Section -->
+  <section class="relative custom-gradient text-white py-20">
     <div class="container mx-auto px-4">
-      <h1 class="text-4xl font-bold mb-12 text-center">Our Services</h1>
-      
-      <div class="space-y-20">
-        {services.map(service => (
-          <div id={service.id} class="service-section">
-            <h2 class="text-3xl font-bold mb-6">{service.title}</h2>
-            <p class="text-xl mb-8">{service.description}</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div class="bg-slate-50 p-6 rounded-lg">
-                <h3 class="text-xl font-bold mb-4">Key Features</h3>
-                <ul class="list-disc list-inside space-y-2">
+      <div class="max-w-3xl">
+        <h1 class="text-5xl font-bold mb-6">Professional Services</h1>
+        <p class="text-xl text-blue-100 mb-8">Comprehensive software solutions tailored to your needs</p>
+        <button 
+          id="openModal"
+          class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+          Get Started
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-16 px-4">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 gap-12">
+        {services.map((service, index) => (
+          <div class={`flex flex-col md:flex-row gap-8 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+            <!-- Service Icon/Image -->
+            <div class="w-full md:w-1/3 flex items-center justify-center">
+              <div class="bg-blue-50 rounded-full p-8">
+                <svg class="w-24 h-24 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.icon} />
+                </svg>
+              </div>
+            </div>
+            
+            <!-- Service Details -->
+            <div class="w-full md:w-2/3">
+              <h2 class="text-3xl font-bold mb-4">{service.title}</h2>
+              <p class="text-gray-600 mb-6">{service.description}</p>
+              
+              <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-semibold mb-4">Key Features</h3>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {service.features.map(feature => (
-                    <li>{feature}</li>
+                    <li class="flex items-center text-gray-700">
+                      <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      {feature}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -63,4 +96,62 @@ const services = [
       </div>
     </div>
   </section>
-</MainLayout> 
+
+  <!-- CTA Section -->
+  <section class="bg-blue-600 text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+      <p class="text-xl mb-8">Let's discuss how we can help bring your project to life.</p>
+      <button 
+        id="openModal"
+        class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+        Contact Us
+      </button>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[1, 2, 3].map(() => (
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="flex items-center mb-4">
+              <div class="text-yellow-400 flex">
+                {[1, 2, 3, 4, 5].map(() => (
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">"Working with this team has been an exceptional experience. They delivered our project on time and exceeded our expectations."</p>
+            <div class="font-semibold">John Doe</div>
+            <div class="text-gray-500 text-sm">CEO, Tech Company</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<script>
+  // Modal open functionality
+  const openButton = document.getElementById('openModal');
+  const modal = document.getElementById('contactModal');
+
+  function openModal() {
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  openButton?.addEventListener('click', openModal);
+</script> 
+
+<style>
+  .custom-gradient {
+    background: linear-gradient(to bottom right, #0f172a, #1e3a8a);
+  }
+</style> 

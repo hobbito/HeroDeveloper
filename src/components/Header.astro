@@ -1,0 +1,84 @@
+---
+const LOGO_URL = "https://placehold.co/150x40/ff0000/white?text=FOOTBALL";
+---
+
+<header class="w-full">
+  <!-- Top bar with contact info -->
+  <div class="bg-white py-2 px-4 flex justify-end items-center gap-6">
+    <!-- Language/Currency selector -->
+    <div class="flex items-center gap-2">
+      <img src="https://placehold.co/20x15/002868/ffffff?text=US" alt="US Flag" class="w-5 h-3">
+      <select class="text-sm font-medium">
+        <option>USD</option>
+      </select>
+    </div>
+
+    <!-- WhatsApp contact -->
+    <a href="tel:+96656090647" class="flex items-center gap-2 text-sm">
+      <img src="https://placehold.co/24x24/25D366/ffffff?text=WA" alt="WhatsApp" class="w-6 h-6">
+      +966 56 090 60 47
+    </a>
+
+    <!-- Instagram dropdown -->
+    <select class="text-sm font-medium">
+      <option>Instagram</option>
+    </select>
+
+    <!-- Login button -->
+    <a href="/login" class="text-sm font-medium flex items-center gap-1">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+      </svg>
+      Login
+    </a>
+  </div>
+
+  <!-- Main navigation -->
+  <nav class="bg-slate-900">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <a href="/" class="flex-shrink-0">
+          <img src={LOGO_URL} alt="Football" class="h-8">
+        </a>
+
+        <!-- Navigation links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/" class="text-white hover:text-red-500 border-b-2 border-red-500 h-16 flex items-center">Home</a>
+          <div class="relative group">
+            <a href="/clubs" class="text-white hover:text-red-500 h-16 flex items-center">
+              Clubs
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+          <div class="relative group">
+            <a href="/el-clasico" class="text-white hover:text-red-500 h-16 flex items-center">
+              El Clasico
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+          <div class="relative group">
+            <a href="/leagues" class="text-white hover:text-red-500 h-16 flex items-center">
+              Leagues
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+          <div class="relative group">
+            <a href="/tournaments" class="text-white hover:text-red-500 h-16 flex items-center">
+              Tournaments
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header> 

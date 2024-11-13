@@ -1,55 +1,168 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+
+const contactMethods = [
+  {
+    title: "Email",
+    description: "Drop me a line anytime",
+    value: "contact@herodeveloper.com",
+    icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+    link: "mailto:contact@herodeveloper.com"
+  },
+  {
+    title: "LinkedIn",
+    description: "Let's connect professionally",
+    value: "linkedin.com/in/yourusername",
+    icon: "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z",
+    link: "https://linkedin.com/in/yourusername"
+  },
+  {
+    title: "GitHub",
+    description: "Check out my code",
+    value: "github.com/yourusername",
+    icon: "M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237",
+    link: "https://github.com/yourusername"
+  }
+];
 ---
 
-<MainLayout title="Contact Us">
-  <section class="py-20">
+<MainLayout title="Contact">
+  <!-- Hero Section -->
+  <section class="relative custom-gradient text-white py-20">
     <div class="container mx-auto px-4">
-      <h1 class="text-4xl font-bold mb-12 text-center">Get in Touch</h1>
-      
-      <div class="max-w-2xl mx-auto">
-        <form class="space-y-6">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
+      <p class="text-xl text-blue-100">Let's discuss your next project</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-16 px-4">
+    <div class="container mx-auto max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Form -->
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+          <h2 class="text-2xl font-bold mb-6">Send a Message</h2>
+          <form class="space-y-6" id="contactForm">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="your@email.com"
+                />
+              </div>
+            </div>
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Project discussion"
+              />
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="6"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Tell me about your project..."
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="space-y-8">
           <div>
-            <label for="name" class="block mb-2 font-semibold">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              required
-            />
+            <h2 class="text-2xl font-bold mb-6">Contact Information</h2>
+            <p class="text-gray-600 mb-8">
+              I'm always interested in hearing about new projects and opportunities. 
+              Feel free to reach out through any of these channels:
+            </p>
           </div>
-          
-          <div>
-            <label for="email" class="block mb-2 font-semibold">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              required
-            />
+
+          <div class="space-y-6">
+            {contactMethods.map(method => (
+              <a 
+                href={method.link}
+                class="flex items-start p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+              >
+                <div class="text-blue-500 mr-4">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={method.icon} />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-900">{method.title}</h3>
+                  <p class="text-sm text-gray-500 mb-1">{method.description}</p>
+                  <p class="text-blue-600">{method.value}</p>
+                </div>
+              </a>
+            ))}
           </div>
-          
-          <div>
-            <label for="message" class="block mb-2 font-semibold">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="6"
-              class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              required
-            ></textarea>
+
+          <!-- Availability Info -->
+          <div class="bg-blue-50 p-6 rounded-xl">
+            <h3 class="font-semibold text-gray-900 mb-2">Availability</h3>
+            <p class="text-gray-600">
+              Currently available for freelance projects and consulting. 
+              Typical response time: within 24 hours.
+            </p>
           </div>
-          
-          <button
-            type="submit"
-            class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
-          >
-            Send Message
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   </section>
-</MainLayout> 
+</MainLayout>
+
+<style>
+  .custom-gradient {
+    background: linear-gradient(to bottom right, #0f172a, #1e3a8a);
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contactForm');
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = Object.fromEntries(formData);
+    
+    // Here you would typically send the data to your backend
+    console.log('Form submitted:', data);
+    
+    // For now, just show an alert
+    alert('Thanks for your message! I\'ll get back to you soon.');
+    (e.target as HTMLFormElement).reset();
+  });
+</script> 

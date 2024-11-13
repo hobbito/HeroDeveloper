@@ -1,0 +1,142 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const skills = [
+  {
+    category: "Frontend",
+    icon: "code",
+    technologies: ["React", "Vue.js", "TypeScript", "Tailwind CSS", "HTML/CSS"]
+  },
+  {
+    category: "Backend",
+    icon: "server",
+    technologies: ["Node.js", "Python", "Express", "PostgreSQL", "MongoDB"]
+  },
+  {
+    category: "Tools & Others",
+    icon: "tool",
+    technologies: ["Git", "Docker", "AWS", "Agile Methodology", "CI/CD"]
+  }
+];
+
+const stats = [
+  { number: "5+", label: "Years Experience" },
+  { number: "50+", label: "Projects Completed" },
+  { number: "30+", label: "Happy Clients" },
+  { number: "100%", label: "Project Success Rate" }
+];
+---
+
+<MainLayout title="About Me">
+  <!-- Hero Section -->
+  <section class="relative custom-gradient text-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <!-- Text Content -->
+        <div class="w-full md:w-1/2 space-y-6">
+          <h1 class="text-5xl font-bold">About <span class="text-blue-400">HeroDeveloper</span></h1>
+          <p class="text-xl text-blue-100">Crafting heroic digital solutions that transform ideas into reality</p>
+          
+          <!-- Social Links -->
+          <div class="flex gap-4">
+            <a href="https://github.com/yourusername" 
+               class="bg-white/10 hover:bg-white/20 px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 flex items-center gap-2">
+              GitHub
+            </a>
+            <a href="https://linkedin.com/in/yourusername" 
+               class="bg-white/10 hover:bg-white/20 px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 flex items-center gap-2">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- Profile Image -->
+        <div class="w-full md:w-1/2">
+          <div class="relative w-64 h-64 mx-auto">
+            <div class="absolute inset-0 bg-blue-500 rounded-full blur-2xl opacity-30 animate-pulse-slow"></div>
+            <img 
+              src="/profile-photo.jpg" 
+              alt="HeroDeveloper Profile" 
+              class="relative rounded-full w-64 h-64 object-cover border-4 border-white/20"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="py-20 px-4 bg-white">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-16">Technical Skills</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {skills.map(skill => (
+          <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-all duration-300">
+            <h3 class="text-2xl font-bold mb-4">{skill.category}</h3>
+            <div class="flex flex-wrap gap-2">
+              {skill.technologies.map(tech => (
+                <span class="bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-20 bg-blue-600 text-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {stats.map(stat => (
+          <div class="bg-white/10 rounded-lg p-8 text-center">
+            <div class="text-4xl font-bold mb-2">{stat.number}</div>
+            <div class="text-blue-100">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-4xl font-bold mb-6">Ready to Build Something Amazing?</h2>
+      <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+        Let's collaborate and bring your ideas to life with clean, efficient, and scalable solutions.
+      </p>
+      <button 
+        id="openModal"
+        class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300">
+        Start a Project
+      </button>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .custom-gradient {
+    background: linear-gradient(to bottom right, #0f172a, #1e3a8a);
+  }
+</style>
+
+<script>
+  // Modal functionality (same as before)
+  const openButton = document.getElementById('openModal');
+  const modal = document.getElementById('contactModal');
+
+  function openModal() {
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  openButton?.addEventListener('click', openModal);
+</script>
