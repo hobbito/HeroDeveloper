@@ -3,6 +3,6 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   integrations: [tailwind()],
-  site: 'https://yourusername.github.io',
-  base: '/your-repo-name', // Remove if deploying to custom domain
+  site: 'https://herodeveloper.com',
+  base: '/HeroDeveloper',
 });
