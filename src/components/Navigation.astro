@@ -1,13 +1,16 @@
 ---
-import Logo from './Logo.astro';
+import Logo from "./Logo.astro";
+import LanguageSelect from "./LanguageSelect.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
-const { lang = 'en' } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const links = [
-  { href: '/', text:'Home' },
-  { href: '/services', text: 'Services' },
-  { href: '/about', text: 'About' },
-  { href: '/contact', text: 'Contact' }
+  { href: "/", text: t("nav.home") },
+  { href: "/services", text: t("nav.services") },
+  { href: "/about", text: t("nav.about") },
+  { href: "/contact", text: t("nav.contact") },
 ];
 ---
 
@@ -17,25 +20,37 @@ const links = [
       <a href="/" class="flex items-center">
         <Logo />
       </a>
-      
+
       <div class="hidden md:flex items-center space-x-8">
-        {links.map(link => (
-          <a 
-            href={link.href} 
-            class="text-gray-700 hover:text-blue-500 transition-colors duration-300"
-          >
-            {link.text}
-          </a>
-        ))}
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              class="text-gray-700 hover:text-blue-500 transition-colors duration-300"
+            >
+              {link.text}
+            </a>
+          ))
+        }
+
+        <div class="flex items-center">
+          <LanguageSelect lang={lang} />
+        </div>
       </div>
-      
+
       <!-- Mobile menu button -->
-      <button 
-        id="mobile-menu-button"
-        class="md:hidden"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      <button id="mobile-menu-button" class="md:hidden">
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
     </div>
@@ -43,13 +58,13 @@ const links = [
 </nav>
 
 <script>
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
 
-  mobileMenuButton?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+  mobileMenuButton?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
   });
 </script>
 
 <!-- Spacer to prevent content from hiding behind fixed navbar -->
-<div class="h-16"></div> 
+<div class="h-16"></div>

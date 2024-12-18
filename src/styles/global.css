@@ -2,8 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add any custom styles here */ 
+/* Custom styles */
 .custom-gradient {
-    background: linear-gradient(to bottom right, #0f172a, #1e3a8a);
+  background: linear-gradient(to bottom right, #0f172a, #1e3a8a);
+}
+
+/* Blob animations */
+@keyframes blob1 {
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: translate(0, 0) rotate(0deg) scale(1);
   }
-  
+  33% {
+    border-radius: 70% 60% 40% 30% / 30% 40% 70% 60%;
+    transform: translate(5%, 5%) rotate(120deg) scale(1.1);
+  }
+  66% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: translate(-5%, -5%) rotate(240deg) scale(0.9);
+  }
+}
+
+@keyframes blob2 {
+  0%,
+  100% {
+    border-radius: 40% 60% 70% 30% / 50% 60% 30% 60%;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: translate(-5%, 5%) rotate(-120deg) scale(0.9);
+  }
+  66% {
+    border-radius: 50% 60% 40% 50% / 40% 50% 60% 50%;
+    transform: translate(5%, -5%) rotate(-240deg) scale(1.1);
+  }
+}
+
+@keyframes blob3 {
+  0%,
+  100% {
+    border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    border-radius: 40% 60% 70% 30% / 50% 60% 30% 60%;
+    transform: translate(5%, -5%) rotate(120deg) scale(1.1);
+  }
+  66% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: translate(-5%, 5%) rotate(240deg) scale(0.9);
+  }
+}
+
+.animate-blob1 {
+  animation: blob1 20s ease-in-out infinite;
+}
+
+.animate-blob2 {
+  animation: blob2 20s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+.animate-blob3 {
+  animation: blob3 20s ease-in-out infinite;
+  animation-delay: -10s;
+}
