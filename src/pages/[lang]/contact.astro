@@ -1,9 +1,16 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import { initEmailService, sendEmail } from "../services/email";
+import MainLayout from "../../layouts/MainLayout.astro";
+import { useTranslations, isValidLang } from "../../i18n/utils";
+import { languages } from "../../i18n/ui";
 
-const lang = getLangFromUrl(Astro.url);
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+if (!isValidLang(lang)) {
+  throw new Error(`Invalid language: ${lang}`);
+}
 const t = useTranslations(lang);
 
 const contactMethods = [
@@ -15,11 +22,6 @@ const contactMethods = [
     link: "mailto:contact@herodeveloper.com",
   },
 ];
-
-// Email service configuration
-const EMAIL_PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
-const EMAIL_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
-const EMAIL_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
 ---
 
 <MainLayout title={t("contact.title")} lang={lang}>
@@ -31,81 +33,6 @@ const EMAIL_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
   <script
     src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
   ></script>
-  <script
-    define:vars={{ EMAIL_PUBLIC_KEY, EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID }}
-  >
-    import { initEmailService, sendEmail } from "../services/email";
-
-    // Initialize EmailJS
-    initEmailService(EMAIL_PUBLIC_KEY);
-
-    const form = document.getElementById("contactForm");
-    const formStatus = document.getElementById("formStatus");
-    const formMessage = document.getElementById("formMessage");
-    const submitButton = document.getElementById("submitButton");
-
-    function showMessage(message, isError = false) {
-      if (formStatus && formMessage) {
-        formStatus.className = `mt-4 p-4 rounded-lg ${isError ? "bg-red-100" : "bg-green-100"}`;
-        formMessage.className = `text-center ${isError ? "text-red-700" : "text-green-700"}`;
-        formMessage.textContent = message;
-        formStatus.classList.remove("hidden");
-      }
-    }
-
-    function setLoading(isLoading) {
-      if (submitButton) {
-        submitButton.disabled = isLoading;
-        submitButton.textContent = isLoading ? "Sending..." : "Send Message";
-      }
-    }
-
-    form?.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      setLoading(true);
-
-      try {
-        // Execute reCAPTCHA v3
-        const recaptchaToken = await grecaptcha.execute(
-          "6Lf1bJ8qAAAAAEAhE67MxN9C-KAc23WZsoLqWwjE",
-          {
-            action: "submit",
-          }
-        );
-
-        // Get form data
-        const formData = new FormData(e.target);
-        const data = {
-          name: formData.get("name"),
-          email: formData.get("email"),
-          message: formData.get("message"),
-          recaptchaToken,
-        };
-
-        // Send email
-        const result = await sendEmail(
-          data,
-          EMAIL_SERVICE_ID,
-          EMAIL_TEMPLATE_ID
-        );
-
-        if (result.success) {
-          showMessage("Thanks for your message! We'll get back to you soon.");
-          form.reset();
-        } else {
-          throw new Error(result.error || "Failed to send message");
-        }
-      } catch (error) {
-        console.error("Error sending message:", error);
-        showMessage(
-          "Sorry, there was an error sending your message. Please try again.",
-          true
-        );
-      } finally {
-        setLoading(false);
-      }
-    });
-  </script>
 
   <!-- Hero Section -->
   <section class="relative custom-gradient text-white py-20">
@@ -242,3 +169,56 @@ const EMAIL_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
     </div>
   </section>
 </MainLayout>
+
+<script>
+  import { sendEmail } from "../../services/email";
+
+  const form = document.getElementById("contactForm") as HTMLFormElement;
+  const formStatus = document.getElementById("formStatus");
+  const formMessage = document.getElementById("formMessage");
+  const submitButton = document.getElementById(
+    "submitButton"
+  ) as HTMLButtonElement;
+
+  function showMessage(message: string, isError: boolean = false) {
+    if (formStatus && formMessage) {
+      formStatus.className = `mt-4 p-4 rounded-lg ${isError ? "bg-red-100" : "bg-green-100"}`;
+      formMessage.className = `text-center ${isError ? "text-red-700" : "text-green-700"}`;
+      formMessage.textContent = message;
+      formStatus.classList.remove("hidden");
+    }
+  }
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+
+      try {
+        const formData = new FormData(form as HTMLFormElement);
+        const data = {
+          name: formData.get("name") as string,
+          email: formData.get("email") as string,
+          message: formData.get("message") as string,
+          token: "",
+        };
+
+        const result = await sendEmail(data);
+        if (result.success) {
+          showMessage("Message sent successfully!");
+          form.reset();
+        } else {
+          showMessage(result.error || "Error sending message", true);
+        }
+      } catch (error) {
+        showMessage("An error occurred while sending the message.", true);
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+        }
+      }
+    });
+  }
+</script>

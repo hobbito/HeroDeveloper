@@ -7,17 +7,17 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const links = [
-  { href: "/", text: t("nav.home") },
-  { href: "/services", text: t("nav.services") },
-  { href: "/about", text: t("nav.about") },
-  { href: "/contact", text: t("nav.contact") },
+  { href: `/${lang}`, text: t("nav.home") },
+  { href: `/${lang}/services`, text: t("nav.services") },
+  { href: `/${lang}/about`, text: t("nav.about") },
+  { href: `/${lang}/contact`, text: t("nav.contact") },
 ];
 ---
 
 <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
   <div class="container mx-auto px-4">
     <div class="flex justify-between items-center h-16">
-      <a href="/" class="flex items-center">
+      <a href={`/${lang}`} class="flex items-center">
         <Logo />
       </a>
 
@@ -34,7 +34,7 @@ const links = [
         }
 
         <div class="flex items-center">
-          <LanguageSelect lang={lang} />
+          <LanguageSelect />
         </div>
       </div>
 

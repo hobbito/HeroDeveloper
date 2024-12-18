@@ -22,19 +22,17 @@ const currentLang = getLangFromUrl(url);
 
 <script>
   const select = document.getElementById("language-select");
+
   select?.addEventListener("change", (e) => {
     const target = e.target as HTMLSelectElement;
     const newLang = target.value;
     const currentPath = window.location.pathname;
 
-    // Remove any existing language prefix
-    let newPath = currentPath.replace(/^\/(en|ja)/, "");
-    // Add new language prefix if not default language
-    newPath = newLang === "en" ? newPath : `/${newLang}${newPath}`;
-    // Ensure path starts with /
-    newPath = newPath || "/";
+    // Get the current route without language prefix
+    const route = currentPath.split("/").slice(2).join("/");
 
+    // Construct new path
+    const newPath = route ? `/${newLang}/${route}` : `/${newLang}`;
     window.location.href = newPath;
   });
 </script>
-

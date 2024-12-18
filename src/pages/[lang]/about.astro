@@ -1,0 +1,530 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { useTranslations, isValidLang } from "../../i18n/utils";
+import { languages } from "../../i18n/ui";
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+if (!isValidLang(lang)) {
+  throw new Error(`Invalid language: ${lang}`);
+}
+const t = useTranslations(lang);
+
+const skills = {
+  frontend: ["React", "Vue", "Angular", "TypeScript", "Tailwind CSS"],
+  backend: ["Node.js", "Python", "Java", "Go", "PostgreSQL"],
+  tools: ["Git", "Docker", "AWS", "CI/CD", "Kubernetes"],
+};
+---
+
+<MainLayout title={t("about.hero.title")} lang={lang}>
+  <!-- Hero Section -->
+  <section class="relative custom-gradient text-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <h1 class="text-5xl font-bold">{t("about.hero.title")}</h1>
+          <p class="text-xl text-blue-100">{t("about.hero.subtitle")}</p>
+        </div>
+
+        <!-- Decorative Element -->
+        <div class="w-full">
+          <div class="relative w-64 h-64 mx-auto">
+            <!-- Animated background shapes -->
+            <div
+              class="absolute inset-0 bg-blue-500/30 rounded-full blur-3xl animate-pulse"
+            >
+            </div>
+            <div
+              class="absolute inset-0 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-700 translate-x-4"
+            >
+            </div>
+            <div
+              class="absolute inset-0 bg-indigo-500/20 rounded-full blur-3xl animate-pulse delay-1000 -translate-x-4"
+            >
+            </div>
+
+            <!-- Organic shapes -->
+            <div
+              class="relative w-full h-full flex items-center justify-center"
+            >
+              <!-- Blob shape 1 -->
+              <div
+                class="absolute w-48 h-48 bg-gradient-to-br from-blue-400/40 to-purple-400/40 rounded-[60%_40%_30%_70%/60%_30%_70%_40%] animate-blob1"
+              >
+              </div>
+              <!-- Blob shape 2 -->
+              <div
+                class="absolute w-48 h-48 bg-gradient-to-br from-indigo-400/40 to-blue-400/40 rounded-[40%_60%_70%_30%/50%_60%_30%_60%] animate-blob2"
+              >
+              </div>
+              <!-- Blob shape 3 -->
+              <div
+                class="absolute w-48 h-48 bg-gradient-to-br from-purple-400/40 to-indigo-400/40 rounded-[50%_50%_30%_70%/60%_40%_60%_40%] animate-blob3"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="bg-gray-50 py-12 px-4">
+    <div class="container mx-auto max-w-5xl">
+      <h2 class="text-3xl font-bold text-center mb-8">
+        {t("about.skills.title")}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div
+          class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
+        >
+          <h3 class="text-lg font-semibold text-blue-600 mb-3">
+            {t("about.skills.frontend")}
+          </h3>
+          <ul class="space-y-2">
+            {
+              skills.frontend.map((skill) => (
+                <li class="flex items-center text-gray-700 hover:text-blue-600 transition-colors p-1.5 rounded hover:bg-blue-50">
+                  <span class="mr-2">•</span>
+                  {skill}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div
+          class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
+        >
+          <h3 class="text-lg font-semibold text-indigo-600 mb-3">
+            {t("about.skills.backend")}
+          </h3>
+          <ul class="space-y-2">
+            {
+              skills.backend.map((skill) => (
+                <li class="flex items-center text-gray-700 hover:text-indigo-600 transition-colors p-1.5 rounded hover:bg-indigo-50">
+                  <span class="mr-2">•</span>
+                  {skill}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div
+          class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
+        >
+          <h3 class="text-lg font-semibold text-purple-600 mb-3">
+            {t("about.skills.tools")}
+          </h3>
+          <ul class="space-y-2">
+            {
+              skills.tools.map((skill) => (
+                <li class="flex items-center text-gray-700 hover:text-purple-600 transition-colors p-1.5 rounded hover:bg-purple-50">
+                  <span class="mr-2">•</span>
+                  {skill}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="py-16 px-4">
+    <div class="container mx-auto max-w-6xl">
+      <h2 class="text-3xl font-bold text-center mb-12">
+        {t("about.experience.title")}
+      </h2>
+      <div class="relative">
+        <!-- Timeline line -->
+        <div
+          class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-blue-600 to-indigo-600"
+        >
+        </div>
+
+        <!-- Timeline items -->
+        <div class="space-y-12">
+          <!-- 2024 -->
+          <div class="relative">
+            <div class="flex items-center justify-center mb-8">
+              <span
+                class="px-4 py-1 text-sm font-semibold text-white bg-violet-600 rounded-full"
+              >
+                {t("about.experience.herodeveloper.period")}
+              </span>
+            </div>
+            <div class="flex flex-col md:flex-row items-center group">
+              <div class="flex-1 md:text-right md:pr-8 mb-4 md:mb-0">
+                <h3
+                  class="text-xl font-semibold text-gray-900 group-hover:text-violet-600 transition-colors"
+                >
+                  {t("about.experience.herodeveloper.title")}
+                </h3>
+                <p class="text-gray-600">
+                  <span class="inline-flex items-center space-x-2">
+                    <span class="text-violet-500">🚀</span>
+                    <span>Software Development, Consulting</span>
+                  </span>
+                </p>
+              </div>
+              <div
+                class="w-4 h-4 bg-violet-600 rounded-full border-4 border-white shadow flex-shrink-0 relative z-10"
+              >
+              </div>
+              <div class="flex-1 md:pl-8">
+                <div class="mb-2">
+                  <span class="font-semibold text-violet-600"
+                    >{t("about.experience.herodeveloper.company")}</span
+                  >
+                  <span class="text-gray-500 ml-2"
+                    >• {t("about.experience.herodeveloper.location")}</span
+                  >
+                </div>
+                <p class="text-gray-600">
+                  {t("about.experience.herodeveloper.description")}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2023 -->
+          <div class="relative">
+            <div class="flex items-center justify-center mb-8">
+              <span
+                class="px-4 py-1 text-sm font-semibold text-white bg-blue-600 rounded-full"
+              >
+                {t("about.experience.freelance.period")}
+              </span>
+            </div>
+            <div class="flex flex-col md:flex-row items-center group">
+              <div class="flex-1 md:text-right md:pr-8 mb-4 md:mb-0">
+                <h3
+                  class="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors"
+                >
+                  {t("about.experience.freelance.title")}
+                </h3>
+                <p class="text-gray-600">
+                  <span class="inline-flex items-center space-x-2">
+                    <span class="text-blue-500">🚀</span>
+                    <span>Laravel, Python</span>
+                  </span>
+                </p>
+              </div>
+              <div
+                class="w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow flex-shrink-0 relative z-10"
+              >
+              </div>
+              <div class="flex-1 md:pl-8">
+                <div class="mb-2">
+                  <span class="font-semibold text-blue-600"
+                    >{t("about.experience.freelance.company")}</span
+                  >
+                  <span class="text-gray-500 ml-2"
+                    >• {t("about.experience.freelance.location")}</span
+                  >
+                </div>
+                <p class="text-gray-600">
+                  {t("about.experience.freelance.description")}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2022 -->
+          <div class="relative">
+            <div class="flex items-center justify-center mb-8">
+              <span
+                class="px-4 py-1 text-sm font-semibold text-white bg-indigo-600 rounded-full"
+              >
+                {t("about.experience.atrapalo.period")}
+              </span>
+            </div>
+            <div class="flex flex-col md:flex-row items-center group">
+              <div class="flex-1 md:text-right md:pr-8 mb-4 md:mb-0">
+                <h3
+                  class="text-xl font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors"
+                >
+                  {t("about.experience.atrapalo.title")}
+                </h3>
+                <p class="text-gray-600">
+                  <span class="inline-flex items-center space-x-2">
+                    <span class="text-indigo-500">🏗️</span>
+                    <span>PHP, DDD, Testing</span>
+                  </span>
+                </p>
+              </div>
+              <div
+                class="w-4 h-4 bg-indigo-600 rounded-full border-4 border-white shadow flex-shrink-0 relative z-10"
+              >
+              </div>
+              <div class="flex-1 md:pl-8">
+                <div class="mb-2">
+                  <span class="font-semibold text-indigo-600"
+                    >{t("about.experience.atrapalo.company")}</span
+                  >
+                  <span class="text-gray-500 ml-2"
+                    >• {t("about.experience.atrapalo.location")}</span
+                  >
+                </div>
+                <p class="text-gray-600">
+                  {t("about.experience.atrapalo.description")}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2021 -->
+          <div class="relative">
+            <div class="flex items-center justify-center mb-8">
+              <span
+                class="px-4 py-1 text-sm font-semibold text-white bg-purple-600 rounded-full"
+              >
+                {t("about.experience.helpmycash.period")}
+              </span>
+            </div>
+            <div class="flex flex-col md:flex-row items-center group">
+              <div class="flex-1 md:text-right md:pr-8 mb-4 md:mb-0">
+                <h3
+                  class="text-xl font-semibold text-gray-900 group-hover:text-purple-600 transition-colors"
+                >
+                  {t("about.experience.helpmycash.title")}
+                </h3>
+                <p class="text-gray-600">
+                  <span class="inline-flex items-center space-x-2">
+                    <span class="text-purple-500">☁️</span>
+                    <span>AWS, ETL, Testing</span>
+                  </span>
+                </p>
+              </div>
+              <div
+                class="w-4 h-4 bg-purple-600 rounded-full border-4 border-white shadow flex-shrink-0 relative z-10"
+              >
+              </div>
+              <div class="flex-1 md:pl-8">
+                <div class="mb-2">
+                  <span class="font-semibold text-purple-600"
+                    >{t("about.experience.helpmycash.company")}</span
+                  >
+                  <span class="text-gray-500 ml-2"
+                    >• {t("about.experience.helpmycash.location")}</span
+                  >
+                </div>
+                <p class="text-gray-600">
+                  {t("about.experience.helpmycash.description")}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2019 -->
+          <div class="relative">
+            <div class="flex items-center justify-center mb-8">
+              <span
+                class="px-4 py-1 text-sm font-semibold text-white bg-green-600 rounded-full"
+              >
+                {t("about.experience.experis.period")}
+              </span>
+            </div>
+            <div class="flex flex-col md:flex-row items-center group">
+              <div class="flex-1 md:text-right md:pr-8 mb-4 md:mb-0">
+                <h3
+                  class="text-xl font-semibold text-gray-900 group-hover:text-green-600 transition-colors"
+                >
+                  {t("about.experience.experis.title")}
+                </h3>
+                <p class="text-gray-600">
+                  <span class="inline-flex items-center space-x-2">
+                    <span class="text-green-500">🏦</span>
+                    <span>PHP, SOLID, Design Patterns</span>
+                  </span>
+                </p>
+              </div>
+              <div
+                class="w-4 h-4 bg-green-600 rounded-full border-4 border-white shadow flex-shrink-0 relative z-10"
+              >
+              </div>
+              <div class="flex-1 md:pl-8">
+                <div class="mb-2">
+                  <span class="font-semibold text-green-600"
+                    >{t("about.experience.experis.company")}</span
+                  >
+                  <span class="text-gray-500 ml-2"
+                    >• {t("about.experience.experis.location")}</span
+                  >
+                </div>
+                <p class="text-gray-600">
+                  {t("about.experience.experis.description")}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Previous Experience Indicator -->
+          <div class="relative">
+            <div class="flex justify-center">
+              <div class="space-y-2">
+                <div class="w-2 h-2 bg-gray-400 rounded-full mx-auto"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full mx-auto"></div>
+                <div class="w-2 h-2 bg-gray-400 rounded-full mx-auto"></div>
+              </div>
+            </div>
+            <div class="flex items-center justify-center mt-8">
+              <span
+                class="px-4 py-1 text-sm font-semibold text-white bg-gray-500 rounded-full"
+              >
+                2013
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-blue-600 text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4">{t("about.cta.title")}</h2>
+      <p class="text-xl mb-8">{t("about.cta.subtitle")}</p>
+      <a
+        href={`/${lang}/contact`}
+        class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+      >
+        {t("about.cta.button")}
+      </a>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  @keyframes blob1 {
+    0%,
+    100% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    33% {
+      border-radius: 70% 60% 40% 30% / 30% 40% 70% 60%;
+      transform: translate(5%, 5%) rotate(120deg) scale(1.1);
+    }
+    66% {
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+      transform: translate(-5%, -5%) rotate(240deg) scale(0.9);
+    }
+  }
+
+  @keyframes blob2 {
+    0%,
+    100% {
+      border-radius: 40% 60% 70% 30% / 50% 60% 30% 60%;
+      transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    33% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      transform: translate(-5%, 5%) rotate(-120deg) scale(0.9);
+    }
+    66% {
+      border-radius: 50% 60% 40% 50% / 40% 50% 60% 50%;
+      transform: translate(5%, -5%) rotate(-240deg) scale(1.1);
+    }
+  }
+
+  @keyframes blob3 {
+    0%,
+    100% {
+      border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%;
+      transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    33% {
+      border-radius: 40% 60% 70% 30% / 50% 60% 30% 60%;
+      transform: translate(5%, -5%) rotate(120deg) scale(1.1);
+    }
+    66% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      transform: translate(-5%, 5%) rotate(240deg) scale(0.9);
+    }
+  }
+
+  .animate-blob1 {
+    animation: blob1 20s ease-in-out infinite;
+  }
+
+  .animate-blob2 {
+    animation: blob2 20s ease-in-out infinite;
+    animation-delay: -5s;
+  }
+
+  .animate-blob3 {
+    animation: blob3 20s ease-in-out infinite;
+    animation-delay: -10s;
+  }
+
+  .skill-hex-container {
+    width: 120px;
+    height: 140px;
+    position: relative;
+    margin: 5px;
+  }
+
+  .skill-hex {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .skill-hex:hover {
+    transform: rotateY(180deg);
+  }
+
+  .skill-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backface-visibility: hidden;
+  }
+
+  .skill-hex:hover .skill-content {
+    background: linear-gradient(135deg, #3b82f6 0%, #4f46e5 100%);
+  }
+
+  .skill-text {
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 1rem;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+  }
+
+  .skill-hex:hover .skill-text {
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 640px) {
+    .skill-hex-container {
+      width: 100px;
+      height: 115px;
+    }
+
+    .skill-text {
+      font-size: 0.8rem;
+    }
+  }
+</style>

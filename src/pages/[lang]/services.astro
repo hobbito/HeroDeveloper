@@ -1,8 +1,16 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import MainLayout from '../../layouts/MainLayout.astro';
+import { useTranslations, isValidLang} from "../../i18n/utils";
+import { languages } from "../../i18n/ui";
 
-const lang = getLangFromUrl(Astro.url);
+export function getStaticPaths() {
+  return Object.keys(languages).map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+if (!isValidLang(lang)) {
+  throw new Error(`Invalid language: ${lang}`);
+}
 const t = useTranslations(lang);
 
 const services = [
@@ -53,7 +61,7 @@ const services = [
         <h1 class="text-5xl font-bold mb-6">{t("services.hero.title")}</h1>
         <p class="text-xl text-blue-100 mb-8">{t("services.hero.subtitle")}</p>
         <a 
-          href="/contact"
+          href={`/${lang}/contact`}
           class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
           {t("services.hero.cta")}
         </a>
@@ -107,7 +115,7 @@ const services = [
       <h2 class="text-3xl font-bold mb-4">{t("services.cta.title")}</h2>
       <p class="text-xl mb-8">{t("services.cta.description")}</p>
       <a 
-        href="/contact"
+        href={`/${lang}/contact`}
         class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
         {t("services.cta.button")}
       </a>
