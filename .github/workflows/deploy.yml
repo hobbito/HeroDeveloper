@@ -20,24 +20,26 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: pnpm
 
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Install, build, and upload your site
-        uses: withastro/action@v1
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
         with:
-          package-manager: pnpm
+          version: 8
+          run_install: true
+
+      - name: Build site
+        run: |
+          pnpm install
+          pnpm run build
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: dist/
 
   deploy:
     needs: build
