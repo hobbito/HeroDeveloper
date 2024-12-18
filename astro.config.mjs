@@ -3,6 +3,6 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   integrations: [tailwind()],
-  site: 'https://www.herodeveloper.com',
+  site: 'https://herodeveloper.com',
   base: '/',
 });
