@@ -134,6 +134,12 @@ export const ui = {
     'services.cta.title': 'Ready to Get Started?',
     'services.cta.description': 'Let\'s discuss how we can help bring your project to life.',
     'services.cta.button': 'Contact Us',
+
+    // Stats Section
+    'home.stats.years': 'Years of Experience',
+    'home.stats.projects': 'Projects Completed',
+    'home.stats.satisfaction': 'Client Satisfaction',
+    'home.stats.support': 'Support Available',
   },
   ja: {
     // Navigation
@@ -260,8 +266,14 @@ export const ui = {
     'services.web.feature4': 'データベース設計',
     'services.web.feature5': 'クラウド展開',
 
-    'services.cta.title': 'プロジェクトを始めましょう',
+    'services.cta.title': 'Ready to Get Started?',
     'services.cta.description': 'お客様のプロジェクトの実現についてご相談させていただきます。',
     'services.cta.button': 'お問い合わせ',
+
+    // Stats Section
+    'home.stats.years': '年の経験',
+    'home.stats.projects': 'プロジェクト完了',
+    'home.stats.satisfaction': 'お客様満足度',
+    'home.stats.support': 'サポート対応',
   }
 } as const; 
