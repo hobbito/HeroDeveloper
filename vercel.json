@@ -5,5 +5,7 @@
       "destination": "/en",
       "permanent": true
     }
-  ]
+  ],
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm run build"
 } 
