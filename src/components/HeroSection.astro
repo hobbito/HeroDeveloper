@@ -12,7 +12,7 @@ const { title, subtitle, ctaText, ctaLink, hasDecorative = false } = Astro.props
 
 <section class="relative custom-gradient text-white py-20">
   <div class="container mx-auto px-4">
-    <div class={`${hasDecorative ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 items-center' : 'max-w-3xl'}`}>
+    <div class={`${hasDecorative ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 items-center' : 'max-w-4xl'}`}>
       <div class="space-y-6">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
         {subtitle && <p class="text-xl text-blue-100 mb-8">{subtitle}</p>}
