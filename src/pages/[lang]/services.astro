@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
+import HeroSection from "../../components/HeroSection.astro";
 import { useTranslations, isValidLang} from "../../i18n/utils";
 import { languages } from "../../i18n/ui";
 
@@ -54,20 +55,12 @@ const services = [
 ---
 
 <MainLayout title={t("services.title")} lang={lang}>
-  <!-- Hero Section -->
-  <section class="relative custom-gradient text-white py-20">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl">
-        <h1 class="text-5xl font-bold mb-6">{t("services.hero.title")}</h1>
-        <p class="text-xl text-blue-100 mb-8">{t("services.hero.subtitle")}</p>
-        <a 
-          href={`/${lang}/contact`}
-          class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
-          {t("services.hero.cta")}
-        </a>
-      </div>
-    </div>
-  </section>
+  <HeroSection
+    title={t("services.hero.title")}
+    subtitle={t("services.hero.subtitle")}
+    ctaText={t("services.hero.cta")}
+    ctaLink={`/${lang}/contact`}
+  />
 
   <!-- Services Section -->
   <section class="py-16 px-4">
@@ -78,7 +71,7 @@ const services = [
             <!-- Service Icon/Image -->
             <div class="w-full md:w-1/3 flex items-center justify-center">
               <div class="bg-blue-50 rounded-full p-8">
-                <svg class="w-24 h-24 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-24 h-24 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={service.icon} />
                 </svg>
               </div>

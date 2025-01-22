@@ -1,0 +1,55 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  hasDecorative?: boolean;
+}
+
+const { title, subtitle, ctaText, ctaLink, hasDecorative = false } = Astro.props;
+---
+
+<section class="relative custom-gradient text-white py-20">
+  <div class="container mx-auto px-4">
+    <div class={`${hasDecorative ? 'grid grid-cols-1 lg:grid-cols-2 gap-12 items-center' : 'max-w-3xl'}`}>
+      <div class="space-y-6">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
+        {subtitle && <p class="text-xl text-blue-100 mb-8">{subtitle}</p>}
+        {
+          ctaText && ctaLink && (
+            <a
+              href={ctaLink}
+              class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+            >
+              {ctaText}
+            </a>
+          )
+        }
+      </div>
+
+      {
+        hasDecorative && (
+          <div class="w-full">
+            <div class="relative w-64 h-64 mx-auto">
+              <!-- Animated background shapes -->
+              <div class="absolute inset-0 bg-blue-600/30 rounded-full blur-3xl animate-pulse" />
+              <div class="absolute inset-0 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-700 translate-x-4" />
+              <div class="absolute inset-0 bg-indigo-500/20 rounded-full blur-3xl animate-pulse delay-1000 -translate-x-4" />
+
+              <!-- Organic shapes -->
+              <div class="relative w-full h-full flex items-center justify-center">
+                <!-- Blob shape 1 -->
+                <div class="absolute w-48 h-48 bg-gradient-to-br from-blue-400/40 to-purple-400/40 rounded-[60%_40%_30%_70%/60%_30%_70%_40%] animate-blob1" />
+                <!-- Blob shape 2 -->
+                <div class="absolute w-48 h-48 bg-gradient-to-br from-indigo-400/40 to-blue-400/40 rounded-[40%_60%_70%_30%/50%_60%_30%_60%] animate-blob2" />
+                <!-- Blob shape 3 -->
+                <div class="absolute w-48 h-48 bg-gradient-to-br from-purple-400/40 to-indigo-400/40 rounded-[50%_50%_30%_70%/60%_40%_60%_40%] animate-blob3" />
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section> 

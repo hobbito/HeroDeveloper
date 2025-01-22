@@ -1,38 +1,61 @@
 ---
 interface Props {
   class?: string;
+  variant?: "default" | "dark" | "primary";
 }
 
-const { class: className } = Astro.props;
+const { class: className, variant = "default" } = Astro.props;
+
+const styles = {
+  default: {
+    icon: "text-blue-600",
+    text: "text-gray-900",
+    highlight: "text-blue-600",
+  },
+  dark: {
+    icon: "text-blue-600",
+    text: "text-white",
+    highlight: "text-blue-600",
+  },
+  primary: {
+    icon: "text-white/90",
+    text: "text-white/80",
+    highlight: "text-white",
+  },
+};
+
+const currentStyle = styles[variant];
 ---
 
 <div class={`flex items-center gap-2 ${className}`}>
-  <div class="text-blue-500">
-    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path 
-        d="M12 2L2 7L12 12L22 7L12 2Z" 
-        stroke="currentColor" 
-        stroke-width="2" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"
-      />
-      <path 
-        d="M2 17L12 22L22 17" 
-        stroke="currentColor" 
-        stroke-width="2" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"
-      />
-      <path 
-        d="M2 12L12 17L22 12" 
-        stroke="currentColor" 
-        stroke-width="2" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"
-      />
+  <div class={currentStyle.icon}>
+    <svg
+      class="w-8 h-8"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12 2L2 7L12 12L22 7L12 2Z"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+      <path
+        d="M2 17L12 22L22 17"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+      <path
+        d="M2 12L12 17L22 12"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
     </svg>
   </div>
-  <span class="font-bold text-xl">
-    Hero<span class="text-blue-500">Developer</span>
+  <span class={`font-bold text-xl ${currentStyle.text}`}>
+    Hero<span class={currentStyle.highlight}>Developer</span>
   </span>
-</div> 
+</div>

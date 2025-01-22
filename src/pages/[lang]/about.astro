@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import HeroSection from "../../components/HeroSection.astro";
 import { useTranslations, isValidLang } from "../../i18n/utils";
 import { languages } from "../../i18n/ui";
 
@@ -21,57 +22,11 @@ const skills = {
 ---
 
 <MainLayout title={t("about.hero.title")} lang={lang}>
-  <!-- Hero Section -->
-  <section class="relative custom-gradient text-white py-20">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="space-y-6">
-          <h1 class="text-5xl font-bold">{t("about.hero.title")}</h1>
-          <p class="text-xl text-blue-100">{t("about.hero.subtitle")}</p>
-        </div>
-
-        <!-- Decorative Element -->
-        <div class="w-full">
-          <div class="relative w-64 h-64 mx-auto">
-            <!-- Animated background shapes -->
-            <div
-              class="absolute inset-0 bg-blue-500/30 rounded-full blur-3xl animate-pulse"
-            >
-            </div>
-            <div
-              class="absolute inset-0 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-700 translate-x-4"
-            >
-            </div>
-            <div
-              class="absolute inset-0 bg-indigo-500/20 rounded-full blur-3xl animate-pulse delay-1000 -translate-x-4"
-            >
-            </div>
-
-            <!-- Organic shapes -->
-            <div
-              class="relative w-full h-full flex items-center justify-center"
-            >
-              <!-- Blob shape 1 -->
-              <div
-                class="absolute w-48 h-48 bg-gradient-to-br from-blue-400/40 to-purple-400/40 rounded-[60%_40%_30%_70%/60%_30%_70%_40%] animate-blob1"
-              >
-              </div>
-              <!-- Blob shape 2 -->
-              <div
-                class="absolute w-48 h-48 bg-gradient-to-br from-indigo-400/40 to-blue-400/40 rounded-[40%_60%_70%_30%/50%_60%_30%_60%] animate-blob2"
-              >
-              </div>
-              <!-- Blob shape 3 -->
-              <div
-                class="absolute w-48 h-48 bg-gradient-to-br from-purple-400/40 to-indigo-400/40 rounded-[50%_50%_30%_70%/60%_40%_60%_40%] animate-blob3"
-              >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <HeroSection
+    title={t("about.hero.title")}
+    subtitle={t("about.hero.subtitle")}
+    hasDecorative={true}
+  />
 
   <!-- Skills Section -->
   <section class="bg-gray-50 py-12 px-4">
@@ -213,7 +168,7 @@ const skills = {
                 </h3>
                 <p class="text-gray-600">
                   <span class="inline-flex items-center space-x-2">
-                    <span class="text-blue-500">🚀</span>
+                    <span class="text-blue-600">🚀</span>
                     <span>Laravel, Python</span>
                   </span>
                 </p>

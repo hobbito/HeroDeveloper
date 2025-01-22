@@ -4,7 +4,7 @@
 
 /* Custom styles */
 .custom-gradient {
-  background: linear-gradient(to bottom right, #0f172a, #1e3a8a);
+  background: linear-gradient(to bottom right, #1e3a8a, rgb(59 130 246));
 }
 
 /* Blob animations */

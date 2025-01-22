@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import HeroSection from "../../components/HeroSection.astro";
 import { useTranslations, isValidLang, type Lang } from "../../i18n/utils";
 import { languages } from "../../i18n/ui";
 
@@ -56,21 +57,12 @@ const features = [
 ---
 
 <MainLayout title={t("home.hero.title")} lang={lang}>
-  <!-- Hero Section -->
-  <section class="relative custom-gradient text-white py-20">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl">
-        <h1 class="text-5xl font-bold mb-6">{t("home.hero.title")}</h1>
-        <p class="text-xl text-blue-100 mb-8">{t("home.hero.subtitle")}</p>
-        <a
-          href={`/${lang}/contact`}
-          class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-        >
-          {t("home.hero.cta")}
-        </a>
-      </div>
-    </div>
-  </section>
+  <HeroSection
+    title={t("home.hero.title")}
+    subtitle={t("home.hero.subtitle")}
+    ctaText={t("home.hero.cta")}
+    ctaLink={`/${lang}/contact`}
+  />
 
   <!-- Services Section -->
   <section class="py-20 px-4">
